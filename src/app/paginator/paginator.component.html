@@ -1,0 +1,24 @@
+<div style="display: flex; justify-content: center; margin-top: 20px;" *ngIf="loading">
+    <div>
+      <button mat-raised-button color="primary" [disabled]="validar2Paginas()" (click)="this.paginator.firstPage()">First</button>
+      <button mat-raised-button color="primary" [disabled]="validar2Paginas()" (click)="this.paginator.previousPage()"><<</button>
+    </div>
+    <div *ngIf="validar5Paginas()">
+      <button mat-raised-button color="primary" [disabled]="validar2Paginas()" *ngFor="let j of pages" (click)="mudarPagina(j)" [ngClass]="{'myStyle' : this.pageIndex == j}">{{j+1}}</button>
+    </div>
+    <div *ngIf="!(validar5Paginas())">
+      <button mat-raised-button color="primary" [disabled]="validar2Paginas()" *ngFor="let j of pages" (click)="mudarPagina(j)" [ngClass]="{'myStyle' : this.pageIndex == j}">{{j+1}}</button>
+    </div>
+    <div>
+      <button mat-raised-button color="primary" [disabled]="validar2Paginas()" (click)="this.paginator.nextPage()">>></button>
+      <button mat-raised-button color="primary" [disabled]="validar2Paginas()" (click)="this.paginator.lastPage()">Last</button>
+    </div>
+  </div>
+
+<mat-paginator [length]="100"
+               [pageIndex]="pageIndex"
+               [pageSize]="pageSize"
+               [pageSizeOptions]="pageSizeOptions"
+               (page)="pageEvent($event)"
+               aria-label="Select page">
+</mat-paginator>
